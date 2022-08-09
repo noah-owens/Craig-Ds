@@ -2,9 +2,15 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
+const { refreshActivity } = require('./activity');
 
 // Command Handler
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+
+client.on('ready', () => {
+	client.user.setActivity(refreshActivity);
+	console.log('Craig Online!');
+});
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
