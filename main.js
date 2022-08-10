@@ -8,8 +8,8 @@ const { refreshActivity } = require('./activity');
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.on('ready', () => {
-	client.user.setActivity(refreshActivity);
-	console.log('Craig Online!');
+	const act = refreshActivity();
+	client.user.setActivity(act[0]);
 });
 
 client.commands = new Collection();
