@@ -18,13 +18,13 @@ for (const file of commandFiles) {
 
 const rest = new REST({ version: '10' }).setToken(token);
 
-// Register slash commands with global scope
+// Register slash commands with guild scope
 (async () => {
 	try {
 		console.log('Started refreshing (/) commands.');
 
 		await rest.put(
-			Routes.applicationCommands(clientId, guildId),
+			Routes.applicationGuildCommand(clientId, guildId),
 			{ body: commands },
 		);
 
